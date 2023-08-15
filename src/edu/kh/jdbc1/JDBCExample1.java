@@ -72,7 +72,9 @@ public class JDBCExample1 {
 			// 메모리에 로드된 JDBC 드라이버를 이용해서
 			// Connection 객체를 만드는 역할.
 			//getConnection(연결정보);
-			conn = DriverManager.getConnection(type+ip+port+sid, user, pw);
+			//conn = DriverManager.getConnection(type+ip+port+sid, user, pw);
+			String url = "jdbc:oracle:thin:@localhost:1521:XE";
+			conn = DriverManager.getConnection(url, user, pw);
 			// url == jdbc:oracle:thin:@localhost:1521:XE
 			
 			// 중간확인
@@ -131,7 +133,6 @@ public class JDBCExample1 {
 			//SQLException : DB 관련 최상위 예외
 			e.printStackTrace();
 		} finally {
-			
 			// 4단계 : 사용한 JDBC 객체 자원 반환 ( close() )
 			// ResultSet, Statement, Connection (생성 역순으로 닫는것을 권장)
 			try {
