@@ -27,19 +27,13 @@ public class JDBCExample4 {
 		
 		// Employee (empName, jobName, salary, annualIncome)
 		
-		Scanner sc = new Scanner(System.in);
-		
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		
+		Scanner sc = new Scanner(System.in);
+		
 		try {
-			
-			System.out.print("직급명 입력 : ");
-			String inputJobName = sc.next();
-			
-			System.out.print("급여 입력 : ");
-			int inputSalary = sc.nextInt();
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
@@ -49,13 +43,21 @@ public class JDBCExample4 {
 			
 			conn = DriverManager.getConnection(url, user, pw);
 			
+			stmt = conn.createStatement();
+
+			
+			System.out.print("직급명 입력 : ");
+			String inputJobName = sc.next();
+			
+			System.out.print("급여 입력 : ");
+			int inputSalary = sc.nextInt();
+			
+			
 			String sql = "SELECT EMP_NAME, JOB_NAME, SALARY, SALARY * 12 ANNUAL_INCOME"
 					+ " FROM EMPLOYEE"
 					+ " JOIN JOB USING(JOB_CODE)"
 					+ " WHERE JOB_NAME = '" + inputJobName + "'"
 					+ " AND SALARY > " + inputSalary;
-			
-			stmt = conn.createStatement();
 			
 			rs = stmt.executeQuery(sql);
 			

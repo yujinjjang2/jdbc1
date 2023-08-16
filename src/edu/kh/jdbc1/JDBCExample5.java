@@ -19,16 +19,14 @@ public class JDBCExample5 {
 		// 입력 받은 값 보다 먼저 입사한 사람의
 		// 이름, 입사일, 성별(M,F) 조회
 		
-		Scanner sc = new Scanner(System.in);
 		
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		
+		Scanner sc = new Scanner(System.in);
+		
 		try {
-			
-			System.out.print("입사일 입력(YYYY-MM-DD) : ");
-			String input = sc.next();
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
@@ -38,13 +36,17 @@ public class JDBCExample5 {
 			
 			conn = DriverManager.getConnection(url, user, pw);
 			
+			stmt = conn.createStatement();
+
+			System.out.print("입사일 입력(YYYY-MM-DD) : ");
+			String input = sc.next();
+			
 			String sql = "SELECT EMP_NAME 이름, "
 					+ " TO_CHAR(HIRE_DATE, 'YYYY\"년\" MM\"월\" DD\"일\"') 입사일,"
 					+ " DECODE(SUBSTR(EMP_NO, 8, 1), '1', 'M', '2', 'F') 성별"
 					+ " FROM EMPLOYEE"
-					+ " WHERE HIRE_DATE < TO_DATE('" + input + "')";
+					+ " WHERE HIRE_DATE < TO_DATE('" + input + "', 'YYYY-MM-DD')";
 			
-			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
 			List<Employee> list = new ArrayList<Employee>();

@@ -26,10 +26,6 @@ public class JDBCExample3 {
 		
 		
 		try {
-			
-			System.out.print("부서명 입력 : ");
-			String input = sc.nextLine();
-			
 			// JDBC 참조변수에 알맞은 객체 대입
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
@@ -43,6 +39,12 @@ public class JDBCExample3 {
 			conn = DriverManager.getConnection(type+ip+port+sid, user, pw);
 									//jdbc:oracle:thin:@localhost:1521:XE == url
 			
+			stmt = conn.createStatement(); // Statement 객체 생성
+
+			
+			System.out.print("부서명 입력 : ");
+			String input = sc.nextLine();
+			
 			// SQL 작성
 			String sql = "SELECT EMP_NAME, NVL(DEPT_TITLE, '부서없음') AS DEPT_TITLE, SALARY"
 					+ " FROM EMPLOYEE"
@@ -54,8 +56,6 @@ public class JDBCExample3 {
 			// 만약 '' 미작성 시 String 값은 컬럼명으로 인식되어
 			// 부적합한 식별자 오류가 발생한다!
 			
-			stmt = conn.createStatement(); // Statement 객체 생성
-			
 			// Statement 객체를 이용해서
 			// SQL(SELECT)을 DB에 전달하여 실행한 후
 			// ResultSet을 반환받아 rs 변수에 대입
@@ -63,7 +63,7 @@ public class JDBCExample3 {
 			
 			
 			// 조회 결과(rs) 를 List에 옮겨담기
-			List<Emp> list = new ArrayList<>();
+			List<Emp> list = new ArrayList<Emp>();
 			
 			while(rs.next()) { // 다음 행으로 이동해서 해당 행에 데이터가 있으면 true
 				
@@ -74,7 +74,7 @@ public class JDBCExample3 {
 				
 				// Emp 객체를 생성하여 컬럼값 담기
 				Emp emp = new Emp(empName, deptTitle, salary);
-				
+			
 				// 생성된 Emp 객체를 List에 추가
 				list.add(emp);
 			}
