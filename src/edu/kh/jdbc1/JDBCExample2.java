@@ -42,6 +42,14 @@ public class JDBCExample2 {
 			
 			rs = stmt.executeQuery(sql);
 			
+//			String sql = "SELECT EMP_ID, EMP_NAME, SALARY FROM EMPLOYEE WHERE SALARY > ?";
+//			
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			pstmt.setInt(1, input);
+//			
+//			rs = pstmt.executeQuery();
+			
 			// 3단계 : SQL을 수행해서 반환받은 결과(ResultSet)를
 			//			한 행씩 접근해서 컬럼값 얻어오기
 			

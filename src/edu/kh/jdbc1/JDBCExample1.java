@@ -88,12 +88,15 @@ public class JDBCExample1 {
 			// -> Connection 객체를 통해서 생성
 			stmt = conn.createStatement();
 			
+//			pstmt = conn.prepareStatement(sql);
 			
 			// 5. 생성된 Statement 객체에
 			// sql 을 적재하여 실행한 후
 			// 결과를 반환받아와서
 			// rs 변수에 저장
 			rs = stmt.executeQuery(sql);
+			
+//			rs = pstmt.executeQuery();
 			// executeQuery() : SELECT문 수행 메서드, ResultSet반환
 			
 			

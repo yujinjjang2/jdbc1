@@ -88,6 +88,12 @@ public class JDBCExample3 {
 				
 			} else {
 				
+//				for(int i = 0; i < list.size(); i++) {
+//					System.out.println(list.get(i));
+//				}
+				
+				System.out.println("-----------------------------------------------------");
+				
 				// 향상된 for문
 				for(Emp emp : list) {
 					System.out.println(emp);

@@ -72,5 +72,9 @@ public class Employee {
 	public String toString() {
 		return empName + " / " + jobName + " / " + salary + " / " + annualIncome;
 	}
+	
+	public String toString1() {
+		return empName + " / " + hireDate;
+	}
 
 }
